@@ -1,0 +1,8 @@
+@echo off
+python -m venv venv
+call venv\Scripts\activate
+pip install -r requirements.txt
+npx tailwindcss -i static/css/input.css -o static/css/output.css
+sqlite3 school.db < data/init_main.sql
+sqlite3 demo.db < data/init_demo.sql
+sqlite3 school.db < data/seed_sample.sql

@@ -1,0 +1,156 @@
+CREATE TABLE institute (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    logo TEXT,
+    tagline TEXT,
+    schema TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    role TEXT NOT NULL,
+    teacher_type TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id)
+);
+
+CREATE TABLE permission (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    feature TEXT NOT NULL,
+    enabled BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id)
+);
+
+CREATE TABLE student (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    class_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id),
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE attendance (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    student_id INTEGER NOT NULL,
+    date DATE NOT NULL,
+    status TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id),
+    FOREIGN KEY (student_id) REFERENCES student(id)
+);
+
+CREATE TABLE exam (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id)
+);
+
+CREATE TABLE grade (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    student_id INTEGER NOT NULL,
+    exam_id INTEGER NOT NULL,
+    subject TEXT NOT NULL,
+    marks INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id),
+    FOREIGN KEY (student_id) REFERENCES student(id),
+    FOREIGN KEY (exam_id) REFERENCES exam(id)
+);
+
+CREATE TABLE timetable (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    class_id INTEGER NOT NULL,
+    day TEXT NOT NULL,
+    period INTEGER NOT NULL,
+    subject TEXT NOT NULL,
+    teacher_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id),
+    FOREIGN KEY (teacher_id) REFERENCES user(id)
+);
+
+CREATE TABLE fee (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    student_id INTEGER NOT NULL,
+    amount REAL NOT NULL,
+    due_date DATE NOT NULL,
+    status TEXT DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id),
+    FOREIGN KEY (student_id) REFERENCES student(id)
+);
+
+CREATE TABLE payroll (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    amount REAL NOT NULL,
+    date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id),
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE book (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    author TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id)
+);
+
+CREATE TABLE inventory_item (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    quantity INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id)
+);
+
+CREATE TABLE transport_route (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    vehicle_id TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id)
+);
+
+CREATE TABLE hostel_room (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    room_number TEXT NOT NULL,
+    student_id INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id),
+    FOREIGN KEY (student_id) REFERENCES student(id)
+);
+
+CREATE TABLE notification (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    institute_id INTEGER NOT NULL,
+    message TEXT NOT NULL,
+    recipient_id INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (institute_id) REFERENCES institute(id),
+    FOREIGN KEY (recipient_id) REFERENCES user(id)
+);

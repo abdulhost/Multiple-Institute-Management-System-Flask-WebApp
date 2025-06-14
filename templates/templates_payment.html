@@ -1,0 +1,75 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script>{% extends "base.html" %}
+{% block title %}Payment{% endblock %}
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-center">Make a Payment</h2>
+    <form method="POST" class="space-y-4">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.payment_method.label(class="block text-sm font-medium") }}
+            {{ form.payment_method(class="border p-2 w-full rounded") }}
+        </div>
+        {{ form.submit(class="bg-blue-600 text-white p-2 w-full rounded hover:bg-blue-700") }}
+    </form>
+    {% if qr_code %}
+    <div class="mt-4 text-center">
+        <p class="mb-2">{{ message }}</p>
+        <img src="{{ url_for('static', filename=qr_code) }}" alt="QR Code" class="mx-auto w-32 h-32">
+    </div>
+    {% endif %}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ PAYPAL_CLIENT_ID }}"></script>
+    <script>
+        // Placeholder for PayPal and Stripe integration
+        document.querySelector('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const paymentMethod = document.querySelector('select[name="payment_method"]').value;
+            if (paymentMethod === 'paypal') {
+                // PayPal button rendering (requires frontend setup)
+            } else if (paymentMethod === 'stripe') {
+                const response = await fetch('/payment', { method: 'POST', body: new FormData(e.target) });
+                const { id } = await response.json();
+                // Redirect to Stripe checkout (requires Stripe.js)
+            }
+        });
+    </script>
+</div>
+{% endblock %}
