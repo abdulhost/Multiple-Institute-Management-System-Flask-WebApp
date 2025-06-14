@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Instituto - Student Demo{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <h4 class="sidebar-heading">Student Demo</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active" href="#" data-section="overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="timetable">Timetable</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="results">Exam Results</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="homework">Homework</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Student Dashboard (Demo Mode)</h1>
+                    <input type="text" class="form-control w-25" id="search-input" placeholder="Search...">
+                </div>
+
+                <div id="overview" class="demo-section">
+                    <h3>Overview</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Attendance</h5>
+                                    <p class="card-text display-6">95%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pending Fees</h5>
+                                    <p class="card-text display-6">$200</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Assignments Due</h5>
+                                    <p class="card-text display-6">3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="analytics-chart" class="mt-4" height="200"></canvas>
+                </div>
+
+                <div id="timetable" class="demo-section d-none">
+                    <h3>Timetable</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Teacher</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timetable-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="timetable-pagination"></ul>
+                    </nav>
+                </div>
+
+                <div id="results" class="demo-section d-none">
+                    <h3>Exam Results</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Exam Name</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="results-pagination"></ul>
+                    </nav>
+                </div>
+
+                <div id="homework" class="demo-section d-none">
+                    <h3>Homework</h3>
+                    <div class="mb-3">
+                        <select class="form-control w-25 d-inline-block" id="homework-filter">
+                            <option value="">All Subjects</option>
+                            <option value="Math">Math</option>
+                            <option value="Science">Science</option>
+                        </select>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Assignment</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="homework-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="homework-pagination"></ul>
+                    </nav>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="detailsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

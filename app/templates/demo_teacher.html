@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}Instituto - Teacher Demo{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <h4 class="sidebar-heading">Teacher Demo</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active" href="#" data-section="overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="schedule">Class Schedule</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="attendance">Mark Attendance</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="exams">Manage Exams</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Teacher Dashboard (Demo Mode)</h1>
+                    <input type="text" class="form-control w-25" id="search-input" placeholder="Search...">
+                </div>
+
+                <div id="overview" class="demo-section">
+                    <h3>Overview</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Classes Assigned</h5>
+                                    <p class="card-text display-6">3</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Students Taught</h5>
+                                    <p class="card-text display-6">90</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Exams Scheduled</h5>
+                                    <p class="card-text display-6">2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="analytics-chart" class="mt-4" height="200"></canvas>
+                </div>
+
+                <div id="schedule" class="demo-section d-none">
+                    <h3>Class Schedule</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Time</th>
+                                <th>Class</th>
+                                <th>Subject</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="schedule-pagination"></ul>
+                    </nav>
+                </div>
+
+                <div id="attendance" class="demo-section d-none">
+                    <h3>Mark Attendance</h3>
+                    <div class="mb-3">
+                        <select class="form-control w-25 d-inline-block" id="attendance-filter">
+                            <option value="">All Classes</option>
+                            <option value="Grade 10">Grade 10</option>
+                            <option value="Grade 11">Grade 11</option>
+                        </select>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="attendance-pagination"></ul>
+                    </nav>
+                </div>
+
+                <div id="exams" class="demo-section d-none">
+                    <h3>Manage Exams</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Exam Name</th>
+                                <th>Date</th>
+                                <th>Class</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="exams-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="exams-pagination"></ul>
+                    </nav>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="detailsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

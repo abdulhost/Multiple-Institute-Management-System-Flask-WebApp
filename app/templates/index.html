@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}Instituto - Empowering Education{% endblock %}
+
+{% block content %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">Instituto</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary ms-2" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-primary ms-2" href="/signup">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-primary ms-2" href="/demo/superadmin">Try Demo</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero text-center">
+        <div class="container">
+            <h1 class="display-4">Empower Your Institutes with Instituto</h1>
+            <p class="lead">Manage multiple educational institutes seamlessly with our free, all-in-one ERP solution.</p>
+            <a href="/signup" class="btn btn-primary btn-lg mt-3">Get Started for Free</a>
+            <a href="/demo/superadmin" class="btn btn-outline-primary btn-lg mt-3 ms-2">Try Demo</a>
+            <p class="mt-3 text-muted">Trusted by over 500 institutes worldwide.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose Instituto?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Admission Management</h3>
+                            <p class="card-text">Streamline admissions for 10,000+ students across multiple institutes with our intuitive portal.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Fee Collection</h3>
+                            <p class="card-text">Automate fee payments and track dues for 100+ institutes in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Exam & Results</h3>
+                            <p class="card-text">Manage exams and generate result cards for thousands of students effortlessly.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Attendance Tracking</h3>
+                            <p class="card-text">Monitor student and staff attendance with our mobile-friendly system.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Real-Time Messaging</h3>
+                            <p class="card-text">Connect admins, teachers, and parents with instant messaging across devices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Multi-Institute Support</h3>
+                            <p class="card-text">Centrally manage multiple institutes with customizable dashboards and reports.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">What Our Users Say</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <blockquote class="blockquote mb-0">
+                                <p>"Instituto has revolutionized how we manage our 5 campuses. The platform is intuitive and saves us hours daily."</p>
+                                <footer class="blockquote-footer">Dr. Sarah Patel, Director, Horizon Academy</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <blockquote class="blockquote mb-0">
+                                <p>"The real-time messaging feature keeps our parents engaged and informed. Highly recommend Instituto!"</p>
+                                <footer class="blockquote-footer">Mr. James Lee, Principal, Starlight Schools</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm fade-in">
+                        <div class="card-body text-center">
+                            <blockquote class="blockquote mb-0">
+                                <p>"Managing exams and fees across our institutes has never been easier. Instituto is a game-changer."</p>
+                                <footer class="blockquote-footer">Ms. Aisha Khan, Admin, Global Education Network</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta text-center py-5">
+        <div class="container">
+            <h2>Ready to Transform Your Institute?</h2>
+            <p class="lead">Join 500+ institutes using Instituto to streamline operations.</p>
+            <a href="/signup" class="btn btn-primary btn-lg">Start Now for Free</a>
+            <a href="/demo/superadmin" class="btn btn-outline-primary btn-lg ms-2">Try Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center py-4">
+        <div class="container">
+            <p>© 2025 Instituto. All rights reserved.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                <li class="list-inline-item"><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA for Mobile -->
+    <div class="sticky-cta d-md-none">
+        <a href="/signup" class="btn btn-primary w-100">Get Started</a>
+        <a href="/demo/superadmin" class="btn btn-outline-primary w-100 mt-2">Try Demo</a>
+    </div>
+{% endblock %}

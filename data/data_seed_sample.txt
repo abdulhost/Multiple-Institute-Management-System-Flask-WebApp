@@ -1,7 +1,0 @@
-INSERT INTO institute (name, logo, tagline, schema) VALUES ('Sample Institute', NULL, 'Education for All', 'standard');
-INSERT INTO user (institute_id, username, email, password_hash, role, teacher_type) VALUES (1, 'superadmin', 'superadmin@example.com', '$2b$12$abc123hashedpassword', 'super_admin', NULL);
-INSERT INTO user (institute_id, username, email, password_hash, role, teacher_type) VALUES (1, 'admin', 'admin@example.com', '$2b$12$abc123hashedpassword', 'admin', NULL);
-INSERT INTO student (institute_id, user_id, name, class_id) VALUES (1, 2, 'Sample Student', 1);
-INSERT INTO attendance (institute_id, student_id, date, status) VALUES (1, 1, '2025-06-14', 'Present');
-INSERT INTO exam (institute_id, name, date) VALUES (1, 'Midterm', '2025-07-01');
-INSERT INTO grade (institute_id, student_id, exam_id, subject, marks) VALUES (1, 1, 1, 'Math', 85);

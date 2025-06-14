@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Instituto - Parent Demo{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <h4 class="sidebar-heading">Parent Demo</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active" href="#" data-section="overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="attendance">Attendance</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="fees">Fees</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="progress">Progress</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Parent Dashboard (Demo Mode)</h1>
+                    <input type="text" class="form-control w-25" id="search-input" placeholder="Search...">
+                </div>
+
+                <div id="overview" class="demo-section">
+                    <h3>Overview</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Child's Attendance</h5>
+                                    <p class="card-text display-6">95%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pending Fees</h5>
+                                    <p class="card-text display-6">$200</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Recent Grades</h5>
+                                    <p class="card-text display-6">A</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="analytics-chart" class="mt-4" height="200"></canvas>
+                </div>
+
+                <div id="attendance" class="demo-section d-none">
+                    <h3>Attendance</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Class</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="attendance-pagination"></ul>
+                    </nav>
+                </div>
+
+                <div id="fees" class="demo-section d-none">
+                    <h3>Fees</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fees-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="fees-pagination"></ul>
+                    </nav>
+                </div>
+
+                <div id="progress" class="demo-section d-none">
+                    <h3>Progress</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Exam</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Grade</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="progress-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="progress-pagination"></ul>
+                    </nav>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="detailsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

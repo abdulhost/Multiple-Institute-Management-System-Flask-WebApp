@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}Instituto - SuperAdmin Demo{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <h4 class="sidebar-heading">SuperAdmin Demo</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active" href="#" data-section="overview">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="institutes">Manage Institutes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="users">Manage Users</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" data-section="analytics">Analytics</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">SuperAdmin Dashboard (Demo Mode)</h1>
+                    <input type="text" class="form-control w-25" id="search-input" placeholder="Search...">
+                </div>
+
+                <div id="overview" class="demo-section">
+                    <h3>Overview</h3>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Institutes</h5>
+                                    <p class="card-text display-6">5</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Students</h5>
+                                    <p class="card-text display-6">10,000</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow-sm fade-in">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Revenue</h5>
+                                    <p class="card-text display-6">$500,000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="analytics-chart" class="mt-4" height="200"></canvas>
+                </div>
+
+                <div id="institutes" class="demo-section d-none">
+                    <h3>Manage Institutes</h3>
+                    <div class="mb-3">
+                        <select class="form-control w-25 d-inline-block" id="institute-filter">
+                            <option value="">All Locations</option>
+                            <option value="New York">New York</option>
+                            <option value="London">London</option>
+                        </select>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Students</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="institutes-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="institutes-pagination"></ul>
+                    </nav>
+                </div>
+
+                <div id="users" class="demo-section d-none">
+                    <h3>Manage Users</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Institute</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table"></tbody>
+                    </table>
+                    <nav>
+                        <ul class="pagination" id="users-pagination"></ul>
+                    </nav>
+                </div>
+
+                <div id="analytics" class="demo-section d-none">
+                    <h3>Analytics</h3>
+                    <canvas id="detailed-analytics-chart" height="200"></canvas>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="detailsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
